@@ -1,0 +1,2187 @@
+{
+  "metadata" : {
+    "name" : "Scala Tutorial",
+    "user_save_timestamp" : "1970-01-01T01:00:00.000Z",
+    "auto_save_timestamp" : "1970-01-01T01:00:00.000Z",
+    "language_info" : {
+      "name" : "scala",
+      "file_extension" : "scala",
+      "codemirror_mode" : "text/x-scala"
+    },
+    "trusted" : true,
+    "customLocalRepo" : null,
+    "customRepos" : null,
+    "customDeps" : null,
+    "customImports" : null,
+    "customArgs" : null,
+    "customSparkConf" : null
+  },
+  "cells" : [ {
+    "metadata" : {
+      "id" : "B5749EED768C4F1C9C5B678D288F65BF"
+    },
+    "cell_type" : "markdown",
+    "source" : "  Set yourself up:\n\n  1. Download Scala - http://www.scala-lang.org/downloads\n  2. Unzip/untar to your favourite location and put the bin subdir in your `PATH` environment variable\n  3. Start a Scala REPL by running `scala`. You should see the prompt:\n\n  scala>\n\n  This is the so called REPL (Read-Eval-Print Loop). You may type any Scala\n  expression, and the result will be printed. We will explain what Scala files\n  look like further into this tutorial, but for now, let's start with some\n  basics."
+  }, {
+    "metadata" : {
+      "id" : "EADC4B468FF346AB8AB3224CF3ADDB80"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Basics"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "33FE766745FB42D28A28D234FF8887B1"
+    },
+    "cell_type" : "code",
+    "source" : "// Single-line comments start with two forward slashes\n\n/*\n  Multi-line comments, as you can already see from above, look like this.\n*/",
+    "outputs" : [ {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 1
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "B3BBE36F0B5045F9A2458D79AC7CE07B"
+    },
+    "cell_type" : "markdown",
+    "source" : "Printing, and forcing a new line on the next print"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "17BD5D51E87A4FB58AE832B927FECE8B"
+    },
+    "cell_type" : "code",
+    "source" : "println(\"Hello world!\")\nprintln(10)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "Hello world!\n10\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 2
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "189C57E4D39449E78788784345798BAC"
+    },
+    "cell_type" : "markdown",
+    "source" : "Printing, without forcing a new line on next print"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "554F94945BDA4D38927F0761337DE42F"
+    },
+    "cell_type" : "code",
+    "source" : "print(\"Hello world\")\nprint(10)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "Hello world10"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 3
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "D43B524B1B6F48798EEE8736B86F3C17"
+    },
+    "cell_type" : "markdown",
+    "source" : "Declaring values is done using either `var` or `val`. `val` declarations are immutable, whereas `vars` are mutable. Immutability is a good thing."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "F4084D74579A45D5A3E829A04393EF61"
+    },
+    "cell_type" : "code",
+    "source" : "val x = 10 // x is now 10\nx = 20     // error: reassignment to val",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<console>:58: error: reassignment to val\n       x = 20     // error: reassignment to val\n         ^\n"
+    } ]
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "F7A6D2F375AD41E28EC10335522A4D76"
+    },
+    "cell_type" : "code",
+    "source" : "var y = 10\ny = 20     // y is now 20",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "y: Int = 20\ny: Int = 20\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 5
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "F6EEFC7692534AA99DC74FE8E2B33D06"
+    },
+    "cell_type" : "markdown",
+    "source" : "Scala is a statically typed language, yet note that in the above declarations, we did not specify a type. This is due to a language feature called type inference. In most cases, Scala compiler can guess what the type of a variable is, so you don't have to type it every time. We can explicitly declare the type of a variable like so:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "329176BDC8F74B0591AED74024FA5CB9"
+    },
+    "cell_type" : "code",
+    "source" : "val z: Int = 10\nval a: Double = 1.0",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "z: Int = 10\na: Double = 1.0\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 6
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "9C111DC84BD14D95805E781C40F05796"
+    },
+    "cell_type" : "markdown",
+    "source" : "Notice automatic conversion from Int to Double, result is 10.0, not 10"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "F4D394DA1F0A44319D1C45F5F1FE8A11"
+    },
+    "cell_type" : "code",
+    "source" : "val b: Double = 10",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "b: Double = 10.0\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 7
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "253F950D13D649FC8E323B23270AB505"
+    },
+    "cell_type" : "markdown",
+    "source" : "Boolean values"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "3540D0A10B1546B78B507BAADA7D6094"
+    },
+    "cell_type" : "code",
+    "source" : "println(true)\nprintln(false)\nprintln(!true)\nprintln(!false)\nprintln(true == false)\nprintln(10 > 5)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "true\nfalse\nfalse\ntrue\nfalse\ntrue\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 14
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "25329ABF027547FD804F1C215BC5EC59"
+    },
+    "cell_type" : "markdown",
+    "source" : "Math is as per usual"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "1713A5E9926A428E857B5ABCEB2813A3"
+    },
+    "cell_type" : "code",
+    "source" : "println(1 + 1)\nprintln(2 - 1)\nprintln(5 * 3)\nprintln(6 / 2)\nprintln(6 / 4)\nprintln(6.0 / 4)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "2\n1\n15\n3\n1\n1.5\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 12
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "DA50AAD125A3427A89BFDD66B7770616"
+    },
+    "cell_type" : "markdown",
+    "source" : "Evaluating an expression in the REPL gives you the type and value of the result"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "A262C0E2A5FD46CF8EA72EF233EC2B88"
+    },
+    "cell_type" : "code",
+    "source" : "1 + 7",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res28: Int = 8\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "8"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 16
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "15D93CE808FA49B48EB0E14131C65968"
+    },
+    "cell_type" : "markdown",
+    "source" : "Note that `res28` is a sequentially generated variable name to store the results of the expressions you typed, your output may differ."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "CA31277520A747558E9159CC0C5B418F"
+    },
+    "cell_type" : "code",
+    "source" : "\"Scala strings are surrounded by double quotes\"\n'a' // A Scala Char\n// 'Single quote strings don't exist' <= This causes an error\n",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<console>:57: warning: a pure expression does nothing in statement position; you may be omitting necessary parentheses\n              \"Scala strings are surrounded by double quotes\"\n              ^\nres30: Char = a\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "a"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 17
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "620EDA46659141C38AFB8A6454E7EA0C"
+    },
+    "cell_type" : "markdown",
+    "source" : "Strings have the usual Java methods defined on them"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "2F8B8B88866E40A4A8B27A9893920B01"
+    },
+    "cell_type" : "code",
+    "source" : "println(\"hello world\".length)\nprintln(\"hello world\".substring(2, 6))\nprintln(\"hello world\".replace(\"C\", \"3\"))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "11\nllo \nhello world\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 18
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "2D1FF9BF85A64B5C91C66BA3A85A28DF"
+    },
+    "cell_type" : "markdown",
+    "source" : "They also have some extra Scala methods. See also: [scala.collection.immutable.StringOps](http://www.scala-lang.org/api/2.11.8/#scala.collection.immutable.StringOps)"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "6D955FA5CCF14A0B9DDC668D93C383B2"
+    },
+    "cell_type" : "code",
+    "source" : "println(\"hello world\".take(5))\nprintln(\"hello world\".drop(5))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "hello\n world\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 19
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "8C4AB39E0916484CB59CA6C624608640"
+    },
+    "cell_type" : "markdown",
+    "source" : "String interpolation: notice the prefix \"s\""
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "A61F724C72CA407CA35393F4377671D6"
+    },
+    "cell_type" : "code",
+    "source" : "val n = 45\nprintln(s\"We have $n apples\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "We have 45 apples\nn: Int = 45\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 22
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "12FA6F523AFB4E888547C832B78716F0"
+    },
+    "cell_type" : "markdown",
+    "source" : "Expressions inside interpolated strings are also possible"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "BF53A403F641443D9BA42399326780EF"
+    },
+    "cell_type" : "code",
+    "source" : "val a = Array(11, 9, 6)\nprintln(s\"My second daughter is ${a(0) - a(2)} years old.\")\nprintln(s\"We have double the amount of ${n / 2.0} in apples.\")\nprintln(s\"Power of 2: ${math.pow(2, 2)}\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "My second daughter is 5 years old.\nWe have double the amount of 22.5 in apples.\nPower of 2: 4.0\na: Array[Int] = Array(11, 9, 6)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 23
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "B21027AC7B654AD485163E0745C04BEF"
+    },
+    "cell_type" : "markdown",
+    "source" : "Formatting with interpolated strings with the prefix \"f\""
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "952224550A474BD2895999CE7399854A"
+    },
+    "cell_type" : "code",
+    "source" : "println(f\"Power of 5: ${math.pow(5, 2)}%1.0f\")\nprintln(f\"Square root of 122: ${math.sqrt(122)}%1.4f\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "Power of 5: 25\nSquare root of 122: 11,0454\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 24
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "A06F5A18FBF740E2B72684C91351E071"
+    },
+    "cell_type" : "markdown",
+    "source" : "Raw strings, ignoring special characters."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "EBAE246990AE4DAB99B1659E610E9B74"
+    },
+    "cell_type" : "code",
+    "source" : "print(raw\"New line feed: \\n. Carriage return: \\r.\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "New line feed: \\n. Carriage return: \\r."
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 26
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "BF79EE02C6084C1992BD70BD8345B721"
+    },
+    "cell_type" : "markdown",
+    "source" : "Some characters need to be \"escaped\", e.g. a double quote inside a string:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "E18331DF5AAE48BA9BDC266EBB84D206"
+    },
+    "cell_type" : "code",
+    "source" : "println(\"They stood outside the \\\"Rose and Crown\\\"\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "They stood outside the \"Rose and Crown\"\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 27
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "5AB3A47D273E402E9839E0501A8EE833"
+    },
+    "cell_type" : "markdown",
+    "source" : "Triple double-quotes let strings span multiple rows and contain quotes"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "6167C040F1D2430CA74B53886479E231"
+    },
+    "cell_type" : "code",
+    "source" : "val html = \"\"\"<form id=\"daform\">\n                <p>Press belo', Joe</p>\n                <input type=\"submit\">\n              </form>\"\"\"\nprintln(html)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<form id=\"daform\">\n                <p>Press belo', Joe</p>\n                <input type=\"submit\">\n              </form>\nhtml: String = \n<form id=\"daform\">\n                <p>Press belo', Joe</p>\n                <input type=\"submit\">\n              </form>\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 28
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "7E282B6C8B3547F68C3C7C7737CA9393"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Functions"
+  }, {
+    "metadata" : {
+      "id" : "EE862459D25B4D1F94E7E9A7A91B2C42"
+    },
+    "cell_type" : "markdown",
+    "source" : "Functions are defined like so:\n\n    def functionName(args...): ReturnType = { body... }\n\nIf you come from more traditional languages, notice the omission of the return keyword. In Scala, the last expression in the function block is the return value."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "C02B11D60548413B88A503DFF933F56B"
+    },
+    "cell_type" : "code",
+    "source" : "def sumOfSquares(x: Int, y: Int): Int = {\n  val x2 = x * x\n  val y2 = y * y\n  x2 + y2\n}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "sumOfSquares: (x: Int, y: Int)Int\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 29
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "07C7A14F8A554B7ABA5067CF287FA5B9"
+    },
+    "cell_type" : "markdown",
+    "source" : "The `{ }` can be omitted if the function body is a single expression:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "BB9EFD463E6D49BE8284F021B299ECE1"
+    },
+    "cell_type" : "code",
+    "source" : "def sumOfSquaresShort(x: Int, y: Int): Int = x * x + y * y",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "sumOfSquaresShort: (x: Int, y: Int)Int\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 30
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "4D59F58BAC544CA48E2A11F02B4A5A94"
+    },
+    "cell_type" : "markdown",
+    "source" : "Syntax for calling functions is familiar:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "59C5041C3BC3428188A680603E7BF982"
+    },
+    "cell_type" : "code",
+    "source" : "println(sumOfSquares(3, 4))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "25\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 31
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "CB51E5C4278B4C44A1A54EB0856A373B"
+    },
+    "cell_type" : "markdown",
+    "source" : "You can use parameters names to specify them in different order"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "13F7947504E24FCF83BEAA8BC67A5D63"
+    },
+    "cell_type" : "code",
+    "source" : "def subtract(x: Int, y: Int): Int = x - y\n\nprintln(subtract(10, 3))\nprintln(subtract(y=10, x=3))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "7\n-7\nsubtract: (x: Int, y: Int)Int\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 33
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "4CA659406C0F493A8E50FDE212DFF6BC"
+    },
+    "cell_type" : "markdown",
+    "source" : "In most cases (with recursive functions the most notable exception), function return type can be omitted, and the same type inference we saw with variables will work with function return values:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "00651763C3714CEC915BC614DBCAB06B"
+    },
+    "cell_type" : "code",
+    "source" : "def sq(x: Int) = x * x",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "sq: (x: Int)Int\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 34
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "B230D0DAD97147B580FBBD8F52290FE2"
+    },
+    "cell_type" : "markdown",
+    "source" : "Functions can have default parameters:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "693373502FBB4D2F87D746BB0EE8B4EF"
+    },
+    "cell_type" : "code",
+    "source" : "def addWithDefault(x: Int, y: Int = 5) = x + y\nprintln(addWithDefault(1, 2))\nprintln(addWithDefault(1))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "3\n6\naddWithDefault: (x: Int, y: Int)Int\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 35
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "E119FEA7F3A744B79E9E708FBC9ACC11"
+    },
+    "cell_type" : "markdown",
+    "source" : "Anonymous functions look like this:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "4A263E2ECD794452853FA8565E30B575"
+    },
+    "cell_type" : "code",
+    "source" : "(x: Int) => x * x",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res65: Int => Int = <function1>\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "&lt;function1&gt;"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 36
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "43109733B50C4F5D8C6835009AE5E8BD"
+    },
+    "cell_type" : "markdown",
+    "source" : "Unlike `def`s, even the input type of anonymous functions can be omitted if the context makes it clear. Notice the type `Int => Int` which means a function that takes `Int` and returns `Int`."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "E610D9D05FC644C0A3285E9562694C76"
+    },
+    "cell_type" : "code",
+    "source" : "val sq: Int => Int = x => x * x",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "sq: Int => Int = <function1>\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 37
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "207A2D0DEDF443A2832A6A4FF1E55B1D"
+    },
+    "cell_type" : "markdown",
+    "source" : "Anonymous functions can be called as usual:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "5EB2FCBB1BB54C97ADECF7626BC76521"
+    },
+    "cell_type" : "code",
+    "source" : "println(sq(10))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "100\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 38
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "D2A4A848C92E44918E9805DCF1DF093F"
+    },
+    "cell_type" : "markdown",
+    "source" : "If each argument in your anonymous function is used only once, Scala gives you an even shorter way to define them. These anonymous functions turn out to be extremely common, as will be obvious in the data structure section."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "27DA51D10348416F8556368BEC77C821"
+    },
+    "cell_type" : "code",
+    "source" : "val addOne: Int => Int = _ + 1\nval weirdSum: (Int, Int) => Int = (_ * 2 + _ * 3)\n\nprintln(addOne(5))\nprintln(weirdSum(2, 4))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "6\n16\naddOne: Int => Int = <function1>\nweirdSum: (Int, Int) => Int = <function2>\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 39
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "A37CD498CBD149878A44AF6EF6628750"
+    },
+    "cell_type" : "markdown",
+    "source" : "The `return` keyword exists in Scala, but it only returns from the inner-most `def` that surrounds it. WARNING: Using `return` in Scala is error-prone and should be avoided. It has no effect on anonymous functions. For example:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "A1C72B2ACA0643289BB1E8D2E1176FC0"
+    },
+    "cell_type" : "code",
+    "source" : "def foo(x: Int): Int = {\n  val anonFunc: Int => Int = { z =>\n    if (z > 5)\n      return z // This line makes z the return value of foo!\n    else\n      z + 2    // This line is the return value of anonFunc\n  }\n  anonFunc(x)  // This line is the return value of foo\n}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "foo: (x: Int)Int\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 40
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "E0AFE41B158C44AD87956E3CF0CF6226"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Flow control"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "7EC7139FBE3947CF94077CD9AE5E76BB"
+    },
+    "cell_type" : "code",
+    "source" : "1 to 5\nval r = 1 to 5\nr.foreach(println)\n\nr foreach println //The same as the previous",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "1\n2\n3\n4\n5\n1\n2\n3\n4\n5\nr: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 42
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "233D867716EA4B8283F5EE517D22EC2B"
+    },
+    "cell_type" : "markdown",
+    "source" : "NB: Scala is quite lenient when it comes to dots and brackets - study the rules separately. This helps write DSLs and APIs that read like English"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "71E0B1F62A2D4EC984FDCD541A2A2DD2"
+    },
+    "cell_type" : "code",
+    "source" : "(5 to 1 by -1) foreach (println)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "5\n4\n3\n2\n1\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 43
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "CB2D3BDAACC1410B82AC74B0E657EFA3"
+    },
+    "cell_type" : "markdown",
+    "source" : "A while loop"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "A3E62E33A7A242E683D197CAE804D00A"
+    },
+    "cell_type" : "code",
+    "source" : "var i = 0\nwhile (i < 10) { println(\"i \" + i); i += 1 }\n\nwhile (i < 10) { println(\"i \" + i); i += 1 }\n\nprintln(\"i after the while's: \" + i)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "i 0\ni 1\ni 2\ni 3\ni 4\ni 5\ni 6\ni 7\ni 8\ni 9\ni after the while's: 10\ni: Int = 10\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 46
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "7F9A8BB3CE8F4E7A8D38B94A3F321666"
+    },
+    "cell_type" : "markdown",
+    "source" : "Note that while is a loop in the classical sense - it executes sequentially while changing the loop variable. while is very fast, but using the combinators and comprehensions above is easier to understand and parallelize"
+  }, {
+    "metadata" : {
+      "id" : "ECE89D6640E347C2895235D00E30DC96"
+    },
+    "cell_type" : "markdown",
+    "source" : "A do-while loop"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "CC2D29790D7042B38C6FB076CE179B30"
+    },
+    "cell_type" : "code",
+    "source" : "i = 0\ndo {\n  println(\"i is still less than 10\")\n  i += 1\n} while (i < 10)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "i is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni is still less than 10\ni: Int = 10\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 47
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "9C3ECC3E4B59434881C4794C8ACD4C53"
+    },
+    "cell_type" : "markdown",
+    "source" : "Recursion is the idiomatic way of repeating an action in Scala (as in most other functional languages). Recursive functions need an explicit return type, the compiler can't infer it. Here it's Unit."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "D32A690049644AD684910FF1804F8A7A"
+    },
+    "cell_type" : "code",
+    "source" : "def showNumbersInRange(a: Int, b: Int): Unit = {\n  println(a)\n  if (a < b)\n    showNumbersInRange(a + 1, b)\n}\nshowNumbersInRange(1, 14)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\nshowNumbersInRange: (a: Int, b: Int)Unit\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 49
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "FF2E3CF0CE264865B7DD5824E008DC9E"
+    },
+    "cell_type" : "markdown",
+    "source" : "Conditionals"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "41B803925E0D4A71AF060D7CD0818D33"
+    },
+    "cell_type" : "code",
+    "source" : "val x = 10\n\nif (x == 1) println(\"1. yeah\")\nif (x == 10) println(\"2. yeah\")\nif (x == 11) println(\"3. yeah\")\nif (x == 11) println(\"4. yeah\") else println(\"4. nay\")\n\nprintln(if (x == 10) \"5. yeah\" else \"5. nope\")\nval text = if (x == 10) \"6. yeah\" else \"6. nope\"",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "2. yeah\n4. nay\n5. yeah\nx: Int = 10\ntext: String = 6. yeah\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 51
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "EB1717BC1132452A9942F7BD5989CD5F"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Data structures"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "BD1675331A15424F8C280E95A41931D2"
+    },
+    "cell_type" : "code",
+    "source" : "val a = Array(1, 2, 3, 5, 8, 13)\nprintln(a(0))\nprintln(a(3))\nprintln(a(21))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "1\n5\njava.lang.ArrayIndexOutOfBoundsException: 21\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:64)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:74)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:76)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:78)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:80)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:82)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:84)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:86)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:88)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:90)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:92)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:94)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:96)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:98)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:100)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:102)\n\tat $iwC$$iwC$$iwC$$iwC.<init>(<console>:104)\n\tat $iwC$$iwC$$iwC.<init>(<console>:106)\n\tat $iwC$$iwC.<init>(<console>:108)\n\tat $iwC.<init>(<console>:110)\n\tat <init>(<console>:112)\n\tat .<init>(<console>:116)\n\tat .<clinit>(<console>)\n\tat .<init>(<console>:7)\n\tat .<clinit>(<console>)\n\tat $print(<console>)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:497)\n\tat org.apache.spark.repl.SparkIMain$ReadEvalPrint.call(SparkIMain.scala:1065)\n\tat org.apache.spark.repl.SparkIMain$Request.loadAndRun(SparkIMain.scala:1346)\n\tat org.apache.spark.repl.SparkIMain.loadAndRunReq$1(SparkIMain.scala:840)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:871)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:819)\n\tat notebook.kernel.Repl$$anonfun$6.apply(Repl.scala:200)\n\tat notebook.kernel.Repl$$anonfun$6.apply(Repl.scala:200)\n\tat scala.util.DynamicVariable.withValue(DynamicVariable.scala:57)\n\tat scala.Console$.withOut(Console.scala:126)\n\tat notebook.kernel.Repl.evaluate(Repl.scala:199)\n\tat notebook.client.ReplCalculator$$anonfun$10$$anon$1$$anonfun$27.replEvaluate$1(ReplCalculator.scala:401)\n\tat notebook.client.ReplCalculator$$anonfun$10$$anon$1$$anonfun$27.apply(ReplCalculator.scala:414)\n\tat notebook.client.ReplCalculator$$anonfun$10$$anon$1$$anonfun$27.apply(ReplCalculator.scala:395)\n\tat scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)\n\tat scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)\n\tat akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:40)\n\tat akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:397)\n\tat scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)\n\tat scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)\n\tat scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)\n\tat scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)\n\n"
+    } ]
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "F79C8F4FA1B44E499C4A98698116BBE4"
+    },
+    "cell_type" : "code",
+    "source" : "val m = Map(\"fork\" -> \"tenedor\", \"spoon\" -> \"cuchara\", \"knife\" -> \"cuchillo\")\nprintln(m(\"fork\"))\nprintln(m(\"spoon\"))\nprintln(m(\"bottle\"))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "tenedor\ncuchara\njava.util.NoSuchElementException: key not found: bottle\n\tat scala.collection.MapLike$class.default(MapLike.scala:228)\n\tat scala.collection.AbstractMap.default(Map.scala:58)\n\tat scala.collection.MapLike$class.apply(MapLike.scala:141)\n\tat scala.collection.AbstractMap.apply(Map.scala:58)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:60)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:77)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:79)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:81)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:83)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:85)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:87)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:89)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:91)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:93)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:95)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:97)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:99)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:101)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:103)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC.<init>(<console>:105)\n\tat $iwC$$iwC$$iwC$$iwC.<init>(<console>:107)\n\tat $iwC$$iwC$$iwC.<init>(<console>:109)\n\tat $iwC$$iwC.<init>(<console>:111)\n\tat $iwC.<init>(<console>:113)\n\tat <init>(<console>:115)\n\tat .<init>(<console>:119)\n\tat .<clinit>(<console>)\n\tat .<init>(<console>:7)\n\tat .<clinit>(<console>)\n\tat $print(<console>)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:497)\n\tat org.apache.spark.repl.SparkIMain$ReadEvalPrint.call(SparkIMain.scala:1065)\n\tat org.apache.spark.repl.SparkIMain$Request.loadAndRun(SparkIMain.scala:1346)\n\tat org.apache.spark.repl.SparkIMain.loadAndRunReq$1(SparkIMain.scala:840)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:871)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:819)\n\tat notebook.kernel.Repl$$anonfun$6.apply(Repl.scala:200)\n\tat notebook.kernel.Repl$$anonfun$6.apply(Repl.scala:200)\n\tat scala.util.DynamicVariable.withValue(DynamicVariable.scala:57)\n\tat scala.Console$.withOut(Console.scala:126)\n\tat notebook.kernel.Repl.evaluate(Repl.scala:199)\n\tat notebook.client.ReplCalculator$$anonfun$10$$anon$1$$anonfun$27.replEvaluate$1(ReplCalculator.scala:401)\n\tat notebook.client.ReplCalculator$$anonfun$10$$anon$1$$anonfun$27.apply(ReplCalculator.scala:414)\n\tat notebook.client.ReplCalculator$$anonfun$10$$anon$1$$anonfun$27.apply(ReplCalculator.scala:395)\n\tat scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)\n\tat scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)\n\tat akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:40)\n\tat akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:397)\n\tat scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)\n\tat scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)\n\tat scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)\n\tat scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)\n\n"
+    } ]
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "40250DE4D7AD40FE820A301A664BB906"
+    },
+    "cell_type" : "code",
+    "source" : "val m = Map(\"fork\" -> \"tenedor\", \"spoon\" -> \"cuchara\", \"knife\" -> \"cuchillo\")\nval safeM = m.withDefaultValue(\"no lo se\")\nsafeM(\"bottle\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "m: scala.collection.immutable.Map[String,String] = Map(fork -> tenedor, spoon -> cuchara, knife -> cuchillo)\nsafeM: scala.collection.immutable.Map[String,String] = Map(fork -> tenedor, spoon -> cuchara, knife -> cuchillo)\nres107: String = no lo se\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "no lo se"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 59
+    } ]
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "34EA9C165B3743F889327B42F81E62CB"
+    },
+    "cell_type" : "code",
+    "source" : "val s = Set(1, 3, 7)\nprintln(s(0))\nprintln(s(1))",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "false\ntrue\ns: scala.collection.immutable.Set[Int] = Set(1, 3, 7)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 60
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "7CA2A9BDCDE641168A2AE04FCC169B3F"
+    },
+    "cell_type" : "markdown",
+    "source" : "Look up the documentation of map [here](http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.Map) and make sure you can read it"
+  }, {
+    "metadata" : {
+      "id" : "A62E1C2FF75D4EF2B4496BB65817C15E"
+    },
+    "cell_type" : "markdown",
+    "source" : "Tuples"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "B1F20CBB3FAF4345B79F85540E74FFCA"
+    },
+    "cell_type" : "code",
+    "source" : "(1, 2)\n\n(4, 3, 2)\n\n(1, 2, \"three\")\n\n(a, 2, \"three\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res111: (Array[Int], Int, String) = (Array(11, 9, 6),2,three)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "([I@1d55fd7,2,three)"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 61
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "2A5F9786D7074C3AAE0C6042028D7721"
+    },
+    "cell_type" : "markdown",
+    "source" : "Why have this?"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "25A083DA22C04D6F8C84C0A50C0205EB"
+    },
+    "cell_type" : "code",
+    "source" : "val divideInts = (x: Int, y: Int) => (x / y, x % y)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "divideInts: (Int, Int) => (Int, Int) = <function2>\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 62
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "E4E3938642604CABAD3CEBA9E382BA79"
+    },
+    "cell_type" : "markdown",
+    "source" : "The function divideInts gives you the result and the remainder"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "0DE5D65D7EDA41CE85C4E8A8E3C412B6"
+    },
+    "cell_type" : "code",
+    "source" : "divideInts(10, 3)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res114: (Int, Int) = (3,1)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "(3,1)"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 63
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "B47644F0D76A462DA2AD1A6622A53C76"
+    },
+    "cell_type" : "markdown",
+    "source" : "To access the elements of a tuple, use `_._n` where `n` is the 1-based index of the element"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "8C72336A1D164E33922067CFFD63EDBB"
+    },
+    "cell_type" : "code",
+    "source" : "val d = divideInts(10, 3)    // (Int, Int) = (3,1)\n\nprintln(d._1)\nprintln(d._2)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "3\n1\nd: (Int, Int) = (3,1)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 64
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "1E77CB0F13BD4DCAB1752C5F864C1F4C"
+    },
+    "cell_type" : "markdown",
+    "source" : "Alternatively you can do multiple-variable assignment to tuple, which is more convenient and readable in many cases"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "013F38A99D144B10A368A9B44871195B"
+    },
+    "cell_type" : "code",
+    "source" : "val (div, mod) = divideInts(10, 3)\n\nprintln(div)\nprintln(mod)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "3\n1\ndiv: Int = 3\nmod: Int = 1\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 65
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "4B0B77062D23419DAF5182375AF832D0"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Object Oriented Programming"
+  }, {
+    "metadata" : {
+      "id" : "E964844706EC49FBB7A74E6C8DAC0552"
+    },
+    "cell_type" : "markdown",
+    "source" : "Aside: Everything we've done so far in this tutorial has been simple expressions (values, functions, etc). These expressions are fine to type into the command-line interpreter for quick tests, but they cannot exist by themselves in a Scala file. For example, you cannot have just \"val x = 5\" in a Scala file. Instead, the only top-level constructs allowed in Scala are:\n\n- objects\n- classes\n- case classes\n- traits\n\nAnd now we will explain what these are."
+  }, {
+    "metadata" : {
+      "id" : "02DEF9708CB841BD98002F6694F45A10"
+    },
+    "cell_type" : "markdown",
+    "source" : "classes are similar to classes in other languages. Constructor arguments are declared after the class name, and initialization is done in the class body."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "0319AFB4A58249DE888DA8C32C23F8FA"
+    },
+    "cell_type" : "code",
+    "source" : "class Dog(br: String) {\n  // Constructor code here\n  var breed: String = br\n\n  // Define a method called bark, returning a String\n  def bark = \"Woof, woof!\"\n\n  // Values and methods are assumed public. \"protected\" and \"private\" keywords\n  // are also available.\n  private def sleep(hours: Int) =\n    println(s\"I'm sleeping for $hours hours\")\n\n  // Abstract methods are simply methods with no body. If we uncomment the next\n  // line, class Dog would need to be declared abstract\n  //   abstract class Dog(...) { ... }\n  // def chaseAfter(what: String): String\n}\n\nval mydog = new Dog(\"greyhound\")\nprintln(mydog.breed) // => \"greyhound\"\nprintln(mydog.bark)  // => \"Woof, woof!\"",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "greyhound\nWoof, woof!\ndefined class Dog\nmydog: Dog = $iwC$$iwC$Dog@33fa5f8c\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 66
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "F86E3D55ECF04DD58EE613B4ABFB105E"
+    },
+    "cell_type" : "markdown",
+    "source" : "The \"object\" keyword creates a type AND a singleton instance of it. It is common for Scala classes to have a \"companion object\", where the per-instance behavior is captured in the classes themselves, but behavior related to all instance of that class go in objects. The difference is similar to class methods vs static methods in other languages. Note that objects and classes can have the same name."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "0E0AC1CEBBB540B4B9F9CF440A31A58E"
+    },
+    "cell_type" : "code",
+    "source" : "object Dog {\n  def allKnownBreeds = List(\"pitbull\", \"shepherd\", \"retriever\")\n  def createDog(breed: String) = new Dog(breed)\n}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "defined module Dog\nwarning: previously defined class Dog is not a companion to object Dog.\nCompanions must be defined together; you may wish to use :paste mode for this.\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 67
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "5253BD1B885749FE8008B152003EC141"
+    },
+    "cell_type" : "markdown",
+    "source" : "Case classes are classes that have extra functionality built in. A common question for Scala beginners is when to use classes and when to use case classes. The line is quite fuzzy, but in general, classes tend to focus on encapsulation, polymorphism, and behavior. The values in these classes tend to be private, and only methods are exposed. The primary purpose of case classes is to hold immutable data. They often have few methods, and the methods rarely have side-effects."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "496C31BD44474DF28119D6F979D00E33"
+    },
+    "cell_type" : "code",
+    "source" : "case class Person(name: String, phoneNumber: String)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "defined class Person\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 68
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "29D49752332A4E94AA86354FCEA55E81"
+    },
+    "cell_type" : "markdown",
+    "source" : "Create a new instance. Note cases classes don't need \"new\""
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "62CD3EE53DF34E048DE51569A46157ED"
+    },
+    "cell_type" : "code",
+    "source" : "val george = Person(\"George\", \"1234\")\nval kate = Person(\"Kate\", \"4567\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "george: Person = Person(George,1234)\nkate: Person = Person(Kate,4567)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 69
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "9C0BB5DB766441789EE4867DACD9EE96"
+    },
+    "cell_type" : "markdown",
+    "source" : "With case classes, you get a few perks for free, like getters:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "CA6BFBF4D67348E7AD428F303369F87C"
+    },
+    "cell_type" : "code",
+    "source" : "george.phoneNumber",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res125: String = 1234\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "1234"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 70
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "F6C7DC49E2EE4F268C1C2ACA05CBE110"
+    },
+    "cell_type" : "markdown",
+    "source" : "Per field equality (no need to override `.equals`)"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "B8BF6E1C73194E07B5BF3D7163E6D638"
+    },
+    "cell_type" : "code",
+    "source" : "Person(\"George\", \"1234\") == Person(\"Kate\", \"1236\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res127: Boolean = false\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "false"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 71
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "EA44F13EBED04580AEE002359FAF9EAC"
+    },
+    "cell_type" : "markdown",
+    "source" : "Easy way to copy"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "D26B2F72641D46F9867DD5C0F94790EA"
+    },
+    "cell_type" : "code",
+    "source" : "// otherGeorge == Person(\"george\", \"9876\")\nval otherGeorge = george.copy(phoneNumber = \"9876\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "otherGeorge: Person = Person(George,9876)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 72
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "98AB696D6DCA4C1E89A6F27ECC68224F"
+    },
+    "cell_type" : "markdown",
+    "source" : "And many others. Case classes also get pattern matching for free, see below."
+  }, {
+    "metadata" : {
+      "id" : "E5C8038E9FA74E499D9BA2D50713B89A"
+    },
+    "cell_type" : "markdown",
+    "source" : "Traits coming soon!"
+  }, {
+    "metadata" : {
+      "id" : "82CCF1DED1C04985869AF2023958F354"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Pattern matching"
+  }, {
+    "metadata" : {
+      "id" : "1C50BD9442B2417D909EFD6152BD3098"
+    },
+    "cell_type" : "markdown",
+    "source" : "Pattern matching is a powerful and commonly used feature in Scala. Here's how you pattern match a case class. NB: Unlike other languages, Scala cases do not need breaks, fall-through does not happen."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "C24F66BA3CD54E789C61F89D7DB2438E"
+    },
+    "cell_type" : "code",
+    "source" : "def matchPerson(person: Person): String = person match {\n  // Then you specify the patterns:\n  case Person(\"George\", number) => \"We found George! His number is \" + number\n  case Person(\"Kate\", number)   => \"We found Kate! Her number is \" + number\n  case Person(name, number)     => \"We matched someone : \" + name + \", phone : \" + number\n}\n\nval email = \"(.*)@(.*)\".r  // Define a regex for the next example.",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "matchPerson: (person: Person)String\nemail: scala.util.matching.Regex = (.*)@(.*)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 73
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "FAA9F78617414E19872F6FC4752E1969"
+    },
+    "cell_type" : "markdown",
+    "source" : "Pattern matching might look familiar to the switch statements in the C family of languages, but this is much more powerful. In Scala, you can match much more:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "ACE1BA38F97A4D7F841EAC9995F5475C"
+    },
+    "cell_type" : "code",
+    "source" : "def matchEverything(obj: Any): String = obj match {\n  // You can match values:\n  case \"Hello world\" => \"Got the string Hello world\"\n\n  // You can match by type:\n  case x: Double => \"Got a Double: \" + x\n\n  // You can specify conditions:\n  case x: Int if x > 10000 => \"Got a pretty big number!\"\n\n  // You can match case classes as before:\n  case Person(name, number) => s\"Got contact info for $name!\"\n\n  // You can match regular expressions:\n  case email(name, domain) => s\"Got email address $name@$domain\"\n\n  // You can match tuples:\n  case (a: Int, b: Double, c: String) => s\"Got a tuple: $a, $b, $c\"\n\n  // You can match data structures:\n  case List(1, b, c) => s\"Got a list with three elements and starts with 1: 1, $b, $c\"\n\n  // You can nest patterns:\n  case List(List((1, 2, \"YAY\"))) => \"Got a list of list of tuple\"\n\n  // Match any case (default) if all previous haven't matched\n  case _ => \"Got unknown object\"\n}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "matchEverything: (obj: Any)String\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 74
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "728A447072A34BA793CF904E4E22B0B7"
+    },
+    "cell_type" : "markdown",
+    "source" : "In fact, you can pattern match any object with an \"unapply\" method. This feature is so powerful that Scala lets you define whole functions as patterns:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "ACE2F27BEC7744968F9DDB01C9BB40AA"
+    },
+    "cell_type" : "code",
+    "source" : "val patternFunc: Person => String = {\n  case Person(\"George\", number) => s\"George's number: $number\"\n  case Person(name, number) => s\"Random person's number: $number\"\n}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "patternFunc: Person => String = <function1>\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 75
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "AE5FC6AFC377442882EAB485F1468559"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Functional programming"
+  }, {
+    "metadata" : {
+      "id" : "879645271E77401F9698F4CEBFB62E35"
+    },
+    "cell_type" : "markdown",
+    "source" : "Scala allows methods and functions to return, or take as parameters, other functions or methods."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "presentation" : {
+        "tabs_state" : "{\n  \"tab_id\": \"#tab2145334992-0\"\n}",
+        "pivot_chart_state" : "{\n  \"hiddenAttributes\": [],\n  \"menuLimit\": 200,\n  \"cols\": [],\n  \"rows\": [],\n  \"vals\": [],\n  \"exclusions\": {},\n  \"inclusions\": {},\n  \"unusedAttrsVertical\": 85,\n  \"autoSortUnusedAttrs\": false,\n  \"inclusionsInfo\": {},\n  \"aggregatorName\": \"Count\",\n  \"rendererName\": \"Table\"\n}"
+      },
+      "id" : "778FC9B879A5436F874AE985874D1DC2"
+    },
+    "cell_type" : "code",
+    "source" : "val add10: Int => Int = _ + 10 // A function taking an Int and returning an Int\nList(1, 2, 3) map add10 // List(11, 12, 13) - add10 is applied to each element",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "add10: Int => Int = <function1>\nres133: List[Int] = List(11, 12, 13)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "<div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anona7d760385eec87c53c7adeb86afa3ec9&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;2145334992&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tabs'], \n      function(playground, _magictabs) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictabs,\n    \"o\": {}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <div>\n          <ul class=\"nav nav-tabs\" id=\"ul2145334992\"><li>\n                <a href=\"#tab2145334992-0\"><i class=\"fa fa-table\"/></a>\n              </li><li>\n                <a href=\"#tab2145334992-1\"><i class=\"fa fa-dot-circle-o\"/></a>\n              </li><li>\n                <a href=\"#tab2145334992-2\"><i class=\"fa fa-line-chart\"/></a>\n              </li><li>\n                <a href=\"#tab2145334992-3\"><i class=\"fa fa-bar-chart\"/></a>\n              </li><li>\n                <a href=\"#tab2145334992-4\"><i class=\"fa fa-cubes\"/></a>\n              </li></ul>\n\n          <div class=\"tab-content\" id=\"tab2145334992\"><div class=\"tab-pane\" id=\"tab2145334992-0\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anonf94e366cd1a67649b97a869bfaca7321&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;618579162&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tableChart'], \n      function(playground, _magictableChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictableChart,\n    \"o\": {\"headers\":[\"_1\",\"_2\"],\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon66ea2baba7d541c4e30bb4d49b004575&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonb9eaaa73f4f5a06a766fa7e7e6673775&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab2145334992-1\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon44a6c9911af785048710c4b45a85b58f&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1154023461&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/scatterChart'], \n      function(playground, _magicscatterChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicscatterChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon2a254a72ce63aa63f9b7cbe491fe8180&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon6fed04d3d7a0b1eadd7dac4bcf92d363&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab2145334992-2\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon3858da710d8015e92dcb18182ac7a57d&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;534481248&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/lineChart'], \n      function(playground, _magiclineChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magiclineChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon9ae45ff052cee5331bfb77a79988a3e1&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon683cdb7fb69289a4925f5d575b624e13&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab2145334992-3\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anona2bb97993f95e1676dbdd45eaf8d3aba&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1045397935&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/barChart'], \n      function(playground, _magicbarChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicbarChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anone7f3c4734da0dab6af3c7b131242eaba&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon6cd1a4f77817b5ede8cda1bb82e4e52a&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab2145334992-4\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon9abd0b1df435bbe8f59a7c73a6186c4f&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1259626853&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/pivotChart'], \n      function(playground, _magicpivotChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicpivotChart,\n    \"o\": {\"width\":600,\"height\":400,\"derivedAttributes\":{},\"extraOptions\":{}}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon3baca574b29afb4bab2e8f2bee7e25b0&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anondc6efdb22309e280083b6520dbd4e4bf&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div></div>\n        </div>\n      </div></div>"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 76
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "1982C40B29A245E58DE6D205EDE8B4EC"
+    },
+    "cell_type" : "markdown",
+    "source" : "Anonymous functions can be used instead of named functions:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "presentation" : {
+        "tabs_state" : "{\n  \"tab_id\": \"#tab1600795336-0\"\n}",
+        "pivot_chart_state" : "{\n  \"hiddenAttributes\": [],\n  \"menuLimit\": 200,\n  \"cols\": [],\n  \"rows\": [],\n  \"vals\": [],\n  \"exclusions\": {},\n  \"inclusions\": {},\n  \"unusedAttrsVertical\": 85,\n  \"autoSortUnusedAttrs\": false,\n  \"inclusionsInfo\": {},\n  \"aggregatorName\": \"Count\",\n  \"rendererName\": \"Table\"\n}"
+      },
+      "id" : "618E08D76FA4482E91EE78A083E1C2FE"
+    },
+    "cell_type" : "code",
+    "source" : "List(1, 2, 3) map (x => x + 10)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res135: List[Int] = List(11, 12, 13)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "<div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon9168c99ed1a5967a7b2fa23e6b9e801c&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1600795336&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tabs'], \n      function(playground, _magictabs) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictabs,\n    \"o\": {}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <div>\n          <ul class=\"nav nav-tabs\" id=\"ul1600795336\"><li>\n                <a href=\"#tab1600795336-0\"><i class=\"fa fa-table\"/></a>\n              </li><li>\n                <a href=\"#tab1600795336-1\"><i class=\"fa fa-dot-circle-o\"/></a>\n              </li><li>\n                <a href=\"#tab1600795336-2\"><i class=\"fa fa-line-chart\"/></a>\n              </li><li>\n                <a href=\"#tab1600795336-3\"><i class=\"fa fa-bar-chart\"/></a>\n              </li><li>\n                <a href=\"#tab1600795336-4\"><i class=\"fa fa-cubes\"/></a>\n              </li></ul>\n\n          <div class=\"tab-content\" id=\"tab1600795336\"><div class=\"tab-pane\" id=\"tab1600795336-0\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon9ac19480710b8e9130c13b9d449bfe0f&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;2065279078&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tableChart'], \n      function(playground, _magictableChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictableChart,\n    \"o\": {\"headers\":[\"_1\",\"_2\"],\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon5b94b2076026009291855804d5fc6742&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon8cdc76ee7aa9dba623d83bd4600794d2&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1600795336-1\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon2eb04ee19c8810bbafbf27e69c39fd18&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1469790879&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/scatterChart'], \n      function(playground, _magicscatterChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicscatterChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonb44955fc9a6ed86d52c2496e06e15ca3&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon3a2fd847c746bb3610a3a4e84f4fad8f&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1600795336-2\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anone770050f1861fd8f13dde48ed8fdbd0b&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1997517272&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/lineChart'], \n      function(playground, _magiclineChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magiclineChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon927c7b8fcafa927184be7fd0f57384a0&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon9fff0ebb3a741d37d5db5d3c30705d19&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1600795336-3\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anond3ee919b5d89bab29b00c7918987202a&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1886517078&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/barChart'], \n      function(playground, _magicbarChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicbarChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon3931354ebe0c865055c1b7f265cc51cc&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon6d946335c3ebc6c3534035e42346583d&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1600795336-4\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon0be9803de0290ffe63162e6992d736ea&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1997380204&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/pivotChart'], \n      function(playground, _magicpivotChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicpivotChart,\n    \"o\": {\"width\":600,\"height\":400,\"derivedAttributes\":{},\"extraOptions\":{}}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonde14a0082e2eb28348f2c688308353f2&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anondeb9d782ab3f839b296e5ee92f9d4dd4&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div></div>\n        </div>\n      </div></div>"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 77
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "E8125242D9B84874BA1A79BC3A1B62F3"
+    },
+    "cell_type" : "markdown",
+    "source" : "And the underscore symbol, can be used if there is just one argument to the anonymous function. It gets bound as the variable"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "presentation" : {
+        "tabs_state" : "{\n  \"tab_id\": \"#tab1216909342-0\"\n}",
+        "pivot_chart_state" : "{\n  \"hiddenAttributes\": [],\n  \"menuLimit\": 200,\n  \"cols\": [],\n  \"rows\": [],\n  \"vals\": [],\n  \"exclusions\": {},\n  \"inclusions\": {},\n  \"unusedAttrsVertical\": 85,\n  \"autoSortUnusedAttrs\": false,\n  \"inclusionsInfo\": {},\n  \"aggregatorName\": \"Count\",\n  \"rendererName\": \"Table\"\n}"
+      },
+      "id" : "E4059B558559491B8E26F466D7F3F90A"
+    },
+    "cell_type" : "code",
+    "source" : "List(1, 2, 3) map (_ + 10)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res137: List[Int] = List(11, 12, 13)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "<div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anonb08fcd9d13131ee4fe3fc3080f0473e1&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1216909342&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tabs'], \n      function(playground, _magictabs) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictabs,\n    \"o\": {}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <div>\n          <ul class=\"nav nav-tabs\" id=\"ul1216909342\"><li>\n                <a href=\"#tab1216909342-0\"><i class=\"fa fa-table\"/></a>\n              </li><li>\n                <a href=\"#tab1216909342-1\"><i class=\"fa fa-dot-circle-o\"/></a>\n              </li><li>\n                <a href=\"#tab1216909342-2\"><i class=\"fa fa-line-chart\"/></a>\n              </li><li>\n                <a href=\"#tab1216909342-3\"><i class=\"fa fa-bar-chart\"/></a>\n              </li><li>\n                <a href=\"#tab1216909342-4\"><i class=\"fa fa-cubes\"/></a>\n              </li></ul>\n\n          <div class=\"tab-content\" id=\"tab1216909342\"><div class=\"tab-pane\" id=\"tab1216909342-0\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon8f02f3941e73635ff1fd43ab0c11bff4&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;2122427517&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tableChart'], \n      function(playground, _magictableChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictableChart,\n    \"o\": {\"headers\":[\"_1\",\"_2\"],\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon08d6f42482065174ba82ad5afc170638&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonee5f573dd190bc42d8c193fb2ef3520a&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1216909342-1\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anona795ee07c6dcdc165dbca18302f04d2f&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1646995360&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/scatterChart'], \n      function(playground, _magicscatterChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicscatterChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon985da4aea9931693f9a06800e9eee7a0&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon71e4a3372d554e4487b881877091b7c4&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1216909342-2\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon9eddc9029bf6546d77aad8ccd2de7543&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1300580548&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/lineChart'], \n      function(playground, _magiclineChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magiclineChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anona3fbde000d64fcb3e4427459fcc608b9&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonff717b08bdf65886a0caa829c4316ce6&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1216909342-3\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon41669bd0fb8a546df7ba7557bacd5c2c&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;1054087005&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/barChart'], \n      function(playground, _magicbarChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicbarChart,\n    \"o\": {\"x\":\"_1\",\"y\":\"_2\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon1e51282b459f2fb337ff71e58abf1dc9&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anona9b6bdb16e4e8a3043010bafd9b65286&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1216909342-4\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon0e63c393df1239966a83a46d343049cb&quot;,&quot;dataInit&quot;:[{&quot;_1&quot;:0,&quot;_2&quot;:11},{&quot;_1&quot;:1,&quot;_2&quot;:12},{&quot;_1&quot;:2,&quot;_2&quot;:13}],&quot;genId&quot;:&quot;301589171&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/pivotChart'], \n      function(playground, _magicpivotChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicpivotChart,\n    \"o\": {\"width\":600,\"height\":400,\"derivedAttributes\":{},\"extraOptions\":{}}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon785fd5c6bfaee772f23d95d784c265e7&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon545e11b21cfc8d1e2a08b12455183525&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div></div>\n        </div>\n      </div></div>"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 78
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "37D79C54178B4AEB87A1523C757C6932"
+    },
+    "cell_type" : "markdown",
+    "source" : "If the anonymous block AND the function you are applying both take one argument, you can even omit the underscore"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "F8F4155733AF4DC2B7005BEB37BE9BE4"
+    },
+    "cell_type" : "code",
+    "source" : "List(\"Dom\", \"Bob\", \"Natalia\") foreach println",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "Dom\nBob\nNatalia\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 79
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "251458989251477E80DE371A984E477E"
+    },
+    "cell_type" : "markdown",
+    "source" : "Combinators"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "FF5C00E586164A7F8D26B57DE83583A4"
+    },
+    "cell_type" : "code",
+    "source" : "s.map(sq)\n\nval sSquared = s. map(sq)\n\nsSquared.filter(_ < 10)\n\nsSquared.reduce (_+_)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "sSquared: scala.collection.immutable.Set[Int] = Set(1, 9, 49)\nres141: Int = 59\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "59"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 80
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "E4C7F3AA27D64E9380FA3FE1D44A2619"
+    },
+    "cell_type" : "markdown",
+    "source" : "The `filter` function takes a predicate (a function from A -> Boolean) and selects all elements which satisfy the predicate"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "presentation" : {
+        "tabs_state" : "{\n  \"tab_id\": \"#tab1630116773-0\"\n}",
+        "pivot_chart_state" : "{\n  \"hiddenAttributes\": [],\n  \"menuLimit\": 200,\n  \"cols\": [],\n  \"rows\": [],\n  \"vals\": [],\n  \"exclusions\": {},\n  \"inclusions\": {},\n  \"unusedAttrsVertical\": 85,\n  \"autoSortUnusedAttrs\": false,\n  \"inclusionsInfo\": {},\n  \"aggregatorName\": \"Count\",\n  \"rendererName\": \"Table\"\n}"
+      },
+      "id" : "0E154A6662154BBB9881337F45351598"
+    },
+    "cell_type" : "code",
+    "source" : "List(1, 2, 3) filter (_ > 2) // List(3)\ncase class Person(name: String, age: Int)\nList(\n  Person(name = \"Dom\", age = 23),\n  Person(name = \"Bob\", age = 30)\n).filter(_.age > 25)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "defined class Person\nres143: List[Person] = List(Person(Bob,30))\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "<div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anonaee1d127ebae3ae2f8b28f382971c181&quot;,&quot;dataInit&quot;:[{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:30}],&quot;genId&quot;:&quot;1630116773&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tabs'], \n      function(playground, _magictabs) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictabs,\n    \"o\": {}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <div>\n          <ul class=\"nav nav-tabs\" id=\"ul1630116773\"><li>\n                <a href=\"#tab1630116773-0\"><i class=\"fa fa-table\"/></a>\n              </li><li>\n                <a href=\"#tab1630116773-1\"><i class=\"fa fa-bar-chart\"/></a>\n              </li><li>\n                <a href=\"#tab1630116773-2\"><i class=\"fa fa-pie-chart\"/></a>\n              </li><li>\n                <a href=\"#tab1630116773-3\"><i class=\"fa fa-cubes\"/></a>\n              </li></ul>\n\n          <div class=\"tab-content\" id=\"tab1630116773\"><div class=\"tab-pane\" id=\"tab1630116773-0\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anonfba779e41d6d189505b460301712df42&quot;,&quot;dataInit&quot;:[{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:30}],&quot;genId&quot;:&quot;474439653&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/tableChart'], \n      function(playground, _magictableChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magictableChart,\n    \"o\": {\"headers\":[\"name\",\"age\"],\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anone65b73b759b2ca8cbdc82bb00763c444&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon7112a3edfabaeadd70c68bf10f746b95&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1630116773-1\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon37b4c04268a80c9e608aaad4beec4599&quot;,&quot;dataInit&quot;:[{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:30}],&quot;genId&quot;:&quot;207826999&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/barChart'], \n      function(playground, _magicbarChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicbarChart,\n    \"o\": {\"x\":\"name\",\"y\":\"age\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonb658cc97734c4ef7fa304276ea311291&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonf0ca028cf74878dda55a44f623687f8d&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1630116773-2\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anona825f6471cc7d18a374df0c9f0581d94&quot;,&quot;dataInit&quot;:[{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:30}],&quot;genId&quot;:&quot;1035923631&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/pieChart'], \n      function(playground, _magicpieChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicpieChart,\n    \"o\": {\"series\":\"name\",\"p\":\"age\",\"width\":600,\"height\":400}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonc1cd5191bc4069a45adf6571650810ca&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon2aaf5506a97a1f248228660752beceab&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div><div class=\"tab-pane\" id=\"tab1630116773-3\">\n              <div>\n      <script data-this=\"{&quot;dataId&quot;:&quot;anon8501587c42f30ca0c31a30a1f210b8c3&quot;,&quot;dataInit&quot;:[{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:30}],&quot;genId&quot;:&quot;3815016&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/req(['../javascripts/notebook/playground','../javascripts/notebook/magic/pivotChart'], \n      function(playground, _magicpivotChart) {\n        // data ==> data-this (in observable.js's scopedEval) ==> this in JS => { dataId, dataInit, ... }\n        // this ==> scope (in observable.js's scopedEval) ==> this.parentElement ==> div.container below (toHtml)\n\n        playground.call(data,\n                        this\n                        ,\n                        {\n    \"f\": _magicpivotChart,\n    \"o\": {\"width\":600,\"height\":400,\"derivedAttributes\":{},\"extraOptions\":{}}\n  }\n  \n                        \n                        \n                      );\n      }\n    );/*]]>*/</script>\n    <div>\n        <p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anon8ea5a3054c19f2adb5740ef461e77682&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p> <span style=\"color:red\"><p data-bind=\"text: value\"><script data-this=\"{&quot;valueId&quot;:&quot;anonb35a8a38cc128e8084e8b5b6b2cc7381&quot;}\" type=\"text/x-scoped-javascript\">/*<![CDATA[*/\nreq(\n['observable', 'knockout'],\nfunction (O, ko) {\n  ko.applyBindings({\n      value: O.makeObservable(valueId)\n    },\n    this\n  );\n});\n        /*]]>*/</script></p></span>\n        <div>\n        </div>\n      </div></div>\n              </div></div>\n        </div>\n      </div></div>"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 81
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "4CCF2F6544FD4E109B0523A0D3F907AB"
+    },
+    "cell_type" : "markdown",
+    "source" : "Scala a foreach method defined on certain collections that takes a type returning Unit (a void method)"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "30BEBB865DF04833B5798DFC10222B63"
+    },
+    "cell_type" : "code",
+    "source" : "val aListOfNumbers = List(1, 2, 3, 4, 10, 20, 100)\naListOfNumbers foreach (x => println(x))\naListOfNumbers foreach println",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "1\n2\n3\n4\n10\n20\n100\n1\n2\n3\n4\n10\n20\n100\naListOfNumbers: List[Int] = List(1, 2, 3, 4, 10, 20, 100)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 82
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "7C15E008DB5F438095C6F83BFC2007CB"
+    },
+    "cell_type" : "markdown",
+    "source" : "`for` comprehensions"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "549D4EA0A4A64812A7425BC8A0047F1C"
+    },
+    "cell_type" : "code",
+    "source" : "for { n <- s } yield sq(n)\n\nval nSquared2 = for { n <- s } yield sq(n)\n\nfor { n <- nSquared2 if n < 10 } yield n\n\nfor { n <- s; nSquared = n * n if nSquared < 10} yield nSquared",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "nSquared2: scala.collection.immutable.Set[Int] = Set(1, 9, 49)\nres147: scala.collection.immutable.Set[Int] = Set(1, 9)\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "Set(1, 9)"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 83
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "84CCDB6AC24D41DD8F9C48379DE9591A"
+    },
+    "cell_type" : "markdown",
+    "source" : "NB Those were not `for` loops. The semantics of a `for` loop is 'repeat', whereas a `for`-comprehension defines a relationship between two sets of data."
+  }, {
+    "metadata" : {
+      "id" : "0E3CABAC45AB4F9F8EFBE528C93E8A92"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Implicits"
+  }, {
+    "metadata" : {
+      "id" : "A23FA6DE01374D388384EED22566ED55"
+    },
+    "cell_type" : "markdown",
+    "source" : "WARNING WARNING: Implicits are a set of powerful features of Scala, and therefore it is easy to abuse them. Beginners to Scala should resist the temptation to use them until they understand not only how they work, but also best practices around them. We only include this section in the tutorial because they are so commonplace in Scala libraries that it is impossible to do anything meaningful without using a library that has implicits. This is meant for you to understand and work with implicts, not declare your own."
+  }, {
+    "metadata" : {
+      "id" : "0F58F9C095154E5D839471057E8BE60C"
+    },
+    "cell_type" : "markdown",
+    "source" : "Any value (vals, functions, objects, etc) can be declared to be implicit by using the, you guessed it, `implicit` keyword. Note we are using the `Dog` class from section 5 in these examples."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "A822A7A262C0403090197E15D0F8DDEF"
+    },
+    "cell_type" : "code",
+    "source" : "implicit val myImplicitInt = 100\nimplicit def myImplicitFunction(breed: String) = new Dog(\"Golden \" + breed)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<console>:59: warning: implicit conversion method myImplicitFunction should be enabled\nby making the implicit value scala.language.implicitConversions visible.\nThis can be achieved by adding the import clause 'import scala.language.implicitConversions'\nor by setting the compiler option -language:implicitConversions.\nSee the Scala docs for value scala.language.implicitConversions for a discussion\nwhy the feature should be explicitly enabled.\n       implicit def myImplicitFunction(breed: String) = new Dog(\"Golden \" + breed)\n                    ^\nmyImplicitInt: Int = 100\nmyImplicitFunction: (breed: String)Dog\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 84
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "3AF14A8C972C435EA86F2566C594748C"
+    },
+    "cell_type" : "markdown",
+    "source" : "By itself, `implicit` keyword doesn't change the behavior of the value, so above values can be used as usual."
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "EF21E182CB9E4BF08BBDCD2745D16349"
+    },
+    "cell_type" : "code",
+    "source" : "println(myImplicitInt + 2)\nprintln(myImplicitFunction(\"Pitbull\").breed)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "102\nGolden Pitbull\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 86
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "88FDE9F122DA450BAADC50574DE39D09"
+    },
+    "cell_type" : "markdown",
+    "source" : "The difference is that these values are now eligible to be used when another piece of code \"needs\" an implicit value. One such situation is implicit function arguments:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "D00287107F984F908D3BDAE930018D91"
+    },
+    "cell_type" : "code",
+    "source" : "def sendGreetings(toWhom: String)(implicit howMany: Int) =\n  s\"Hello $toWhom, $howMany blessings to you and yours!\"",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "sendGreetings: (toWhom: String)(implicit howMany: Int)String\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 87
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "75675885DDD84AF4BD64A0C2D3FC7D6E"
+    },
+    "cell_type" : "markdown",
+    "source" : "If we supply a value for `howMany`, the function behaves as usual"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "87BB56CEEC514F718D21DA0632371962"
+    },
+    "cell_type" : "code",
+    "source" : "sendGreetings(\"John\")(1000) ",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res155: String = Hello John, 1000 blessings to you and yours!\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "Hello John, 1000 blessings to you and yours!"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 88
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "201650657F10450580B1075299B3E366"
+    },
+    "cell_type" : "markdown",
+    "source" : "But if we `omit` the implicit parameter, an implicit value of the same type is used, in this case, `myImplicitInt`:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "1EA467AA1AB34DCC8BD944F02B4CFA8F"
+    },
+    "cell_type" : "code",
+    "source" : "sendGreetings(\"Jane\")",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "res157: String = Hello Jane, 100 blessings to you and yours!\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : "Hello Jane, 100 blessings to you and yours!"
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 89
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "279619DB4F594A4291310691D67E50E9"
+    },
+    "cell_type" : "markdown",
+    "source" : "Implicit function parameters enable us to simulate type classes in other functional languages. It is so often used that it gets its own shorthand. The following two lines mean the same thing:\n\n    def foo[T](implicit c: C[T]) = ... \n    def foo[T : C] = ..."
+  }, {
+    "metadata" : {
+      "id" : "FB23FA97B2F74663BC5F59DDDE22178A"
+    },
+    "cell_type" : "markdown",
+    "source" : "Another situation in which the compiler looks for an implicit is if you have\n\n    obj.method(...)\nbut \"obj\" doesn't have `method` as a method. In this case, if there is an implicit conversion of type A => B, where A is the type of obj, and B has a method called `method`, that conversion is applied. So having `myImplicitFunction` above in scope, we can say:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "0F210692E63248E396BBFB5E311CDD89"
+    },
+    "cell_type" : "code",
+    "source" : "println(\"Retriever\".breed)\nprintln(\"Sheperd\".bark)",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "Golden Retriever\nWoof, woof!\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 90
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "D56E9FD17030420BAA026DE7B92EC824"
+    },
+    "cell_type" : "markdown",
+    "source" : "Here the `String` is first converted to `Dog` using our function above, and then the appropriate method is called. This is an extremely powerful feature, but again, it is not to be used lightly. In fact, when you defined the implicit function above, your compiler should have given you a warning, that you shouldn't do this unless you really know what you're doing."
+  }, {
+    "metadata" : {
+      "id" : "48D0C1B1A21A457E90B022EC3F63CCAF"
+    },
+    "cell_type" : "markdown",
+    "source" : "# Misc"
+  }, {
+    "metadata" : {
+      "id" : "6CA230B8174E484399EEB02D98C1B884"
+    },
+    "cell_type" : "markdown",
+    "source" : "Importing things"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "51F5827948AE4191A422F4475B1355E1"
+    },
+    "cell_type" : "code",
+    "source" : "import scala.collection.immutable.List",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "import scala.collection.immutable.List\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 91
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "594AD737378A4D8886056F0D9BAEF808"
+    },
+    "cell_type" : "markdown",
+    "source" : "Import all \"sub packages\""
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "E047C68B6A954D7BBAF3D7FFE45B3449"
+    },
+    "cell_type" : "code",
+    "source" : "import scala.collection.immutable._",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "import scala.collection.immutable._\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 92
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "C9EA7ACE5D5146428B5A1785EFF7F715"
+    },
+    "cell_type" : "markdown",
+    "source" : "Import multiple classes in one statement"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "1B6F535EA62148ECAFA1DCD7CDC68312"
+    },
+    "cell_type" : "code",
+    "source" : "import scala.collection.immutable.{List, Map}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "import scala.collection.immutable.{List, Map}\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 93
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "0A8966E15A49424589966E4F77B8AF85"
+    },
+    "cell_type" : "markdown",
+    "source" : "Rename an import using `=>`"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "511BA9F64ACE44979181D13FFAED46FE"
+    },
+    "cell_type" : "code",
+    "source" : "import scala.collection.immutable.{List => ImmutableList}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "import scala.collection.immutable.{List=>ImmutableList}\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 94
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "88C3F34A53A04CE2A1B1490FD09955D4"
+    },
+    "cell_type" : "markdown",
+    "source" : "Import all classes, except some. The following excludes `Map` and `Set`:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "001B661EE4C443B690BD6A7D1886F12D"
+    },
+    "cell_type" : "code",
+    "source" : "import scala.collection.immutable.{Map => _, Set => _, _}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "import scala.collection.immutable.{Map=>_, Set=>_, _}\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 95
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "260B075844AA41FE83FB2BDAECCAADE6"
+    },
+    "cell_type" : "markdown",
+    "source" : "Java classes can also be imported. Scala syntax can be used"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "C4AB266FD15640268A3C5626D4D634AA"
+    },
+    "cell_type" : "code",
+    "source" : "import java.swing.{JFrame, JWindow}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<console>:71: error: object swing is not a member of package java\n       import java.swing.{JFrame, JWindow}\n                   ^\n"
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "C91A07B126C949C28A70E28CFC3644AA"
+    },
+    "cell_type" : "markdown",
+    "source" : "Your programs entry point is defined in an scala file using an object, with a single method, main:"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "7E9160326A3340DC954A29CCB6C4BD5B"
+    },
+    "cell_type" : "code",
+    "source" : "object Application {\n  def main(args: Array[String]): Unit = {\n    // stuff goes here.\n  }\n}",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "defined module Application\n"
+    }, {
+      "metadata" : { },
+      "data" : {
+        "text/html" : ""
+      },
+      "output_type" : "execute_result",
+      "execution_count" : 97
+    } ]
+  }, {
+    "metadata" : {
+      "id" : "DCAAE1F8080F457589DE054DF1FA7F53"
+    },
+    "cell_type" : "markdown",
+    "source" : "Files can contain multiple classes and objects. Compile with `scalac`"
+  }, {
+    "metadata" : {
+      "id" : "702E939722FA43FC958696A81B4665CA"
+    },
+    "cell_type" : "markdown",
+    "source" : "Input and output"
+  }, {
+    "metadata" : {
+      "id" : "BA30D6432B5040209FF472A70795AD49"
+    },
+    "cell_type" : "markdown",
+    "source" : "To read a file line by line"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "75B1D16A1D134486AC8719DEEC7941F7"
+    },
+    "cell_type" : "code",
+    "source" : "import scala.io.Source\nfor(line <- Source.fromFile(\"myfile.txt\").getLines())\n  println(line)",
+    "outputs" : [ ]
+  }, {
+    "metadata" : {
+      "id" : "5D147BEB4F7043318ACA42361C65ACB9"
+    },
+    "cell_type" : "markdown",
+    "source" : "To write a file use Java's `PrintWriter`"
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "437890C7EBF74490A88B862095942CD0"
+    },
+    "cell_type" : "code",
+    "source" : "import java.io.PrintWriter\nval writer = new PrintWriter(\"myfile.txt\")\nwriter.write(\"Writing line for line\" + util.Properties.lineSeparator)\nwriter.write(\"Another line here\" + util.Properties.lineSeparator)\nwriter.close()",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<console>:73: error: object Properties is not a member of package notebook.util\n              writer.write(\"Writing line for line\" + util.Properties.lineSeparator)\n                                                          ^\n<console>:74: error: object Properties is not a member of package notebook.util\n              writer.write(\"Another line here\" + util.Properties.lineSeparator)\n                                                      ^\n"
+    } ]
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : true,
+      "id" : "8A91B04A9C7F489FB2D1024CF0D2132E"
+    },
+    "cell_type" : "code",
+    "source" : "",
+    "outputs" : [ ]
+  } ],
+  "nbformat" : 4
+}
