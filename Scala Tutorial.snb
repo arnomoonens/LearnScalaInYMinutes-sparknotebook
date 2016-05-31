@@ -21,7 +21,7 @@
       "id" : "B5749EED768C4F1C9C5B678D288F65BF"
     },
     "cell_type" : "markdown",
-    "source" : "  Set yourself up:\n\n  1. Download Scala - http://www.scala-lang.org/downloads\n  2. Unzip/untar to your favourite location and put the bin subdir in your `PATH` environment variable\n  3. Start a Scala REPL by running `scala`. You should see the prompt:\n\n  scala>\n\n  This is the so called REPL (Read-Eval-Print Loop). You may type any Scala\n  expression, and the result will be printed. We will explain what Scala files\n  look like further into this tutorial, but for now, let's start with some\n  basics."
+    "source" : "  Set yourself up:\n\n  1. Download Scala - http://www.scala-lang.org/downloads\n  2. Unzip/untar to your favourite location and put the bin subdir in your `PATH` environment variable\n  3. Start a Scala REPL by running `scala`. You should see the prompt:\n```\n  scala>\n```\n  This is the so called REPL (Read-Eval-Print Loop). You may type any Scala\n  expression, and the result will be printed. We will explain what Scala files\n  look like further into this tutorial, but for now, let's start with some\n  basics."
   }, {
     "metadata" : {
       "id" : "EADC4B468FF346AB8AB3224CF3ADDB80"
@@ -104,7 +104,7 @@
       "id" : "D43B524B1B6F48798EEE8736B86F3C17"
     },
     "cell_type" : "markdown",
-    "source" : "Declaring values is done using either `var` or `val`. `val` declarations are immutable, whereas `vars` are mutable. Immutability is a good thing."
+    "source" : "Declaring values is done using either `var` or `val`. `val` declarations are immutable, whereas `var`s are mutable. Immutability is a good thing."
   }, {
     "metadata" : {
       "trusted" : true,
@@ -172,7 +172,7 @@
       "id" : "9C111DC84BD14D95805E781C40F05796"
     },
     "cell_type" : "markdown",
-    "source" : "Notice automatic conversion from Int to Double, result is 10.0, not 10"
+    "source" : "Notice automatic conversion from `Int` to `Double`, result is `10.0`, not `10`"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -266,14 +266,14 @@
     "outputs" : [ {
       "name" : "stdout",
       "output_type" : "stream",
-      "text" : "res28: Int = 8\n"
+      "text" : "res2: Int = 8\n"
     }, {
       "metadata" : { },
       "data" : {
         "text/html" : "8"
       },
       "output_type" : "execute_result",
-      "execution_count" : 16
+      "execution_count" : 1
     } ]
   }, {
     "metadata" : {
@@ -289,18 +289,32 @@
       "id" : "CA31277520A747558E9159CC0C5B418F"
     },
     "cell_type" : "code",
-    "source" : "\"Scala strings are surrounded by double quotes\"\n'a' // A Scala Char\n// 'Single quote strings don't exist' <= This causes an error\n",
+    "source" : "\"Scala strings are surrounded by double quotes\"\n'a' // A Scala Char\n",
     "outputs" : [ {
       "name" : "stdout",
       "output_type" : "stream",
-      "text" : "<console>:57: warning: a pure expression does nothing in statement position; you may be omitting necessary parentheses\n              \"Scala strings are surrounded by double quotes\"\n              ^\nres30: Char = a\n"
+      "text" : "<console>:57: warning: a pure expression does nothing in statement position; you may be omitting necessary parentheses\n              \"Scala strings are surrounded by double quotes\"\n              ^\nres5: Char = a\n"
     }, {
       "metadata" : { },
       "data" : {
         "text/html" : "a"
       },
       "output_type" : "execute_result",
-      "execution_count" : 17
+      "execution_count" : 3
+    } ]
+  }, {
+    "metadata" : {
+      "trusted" : true,
+      "input_collapsed" : false,
+      "collapsed" : false,
+      "id" : "AB93F4070B2B425A822E9F9A8A661468"
+    },
+    "cell_type" : "code",
+    "source" : "'Single quote strings don't exist' //<= This causes an error",
+    "outputs" : [ {
+      "name" : "stdout",
+      "output_type" : "stream",
+      "text" : "<console>:3: error: unclosed character literal\n       'Single quote strings don't exist' //<= This causes an error\n                                        ^\n"
     } ]
   }, {
     "metadata" : {
@@ -361,7 +375,7 @@
       "id" : "8C4AB39E0916484CB59CA6C624608640"
     },
     "cell_type" : "markdown",
-    "source" : "String interpolation: notice the prefix \"s\""
+    "source" : "String interpolation: notice the prefix `s`"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -381,7 +395,7 @@
         "text/html" : ""
       },
       "output_type" : "execute_result",
-      "execution_count" : 22
+      "execution_count" : 8
     } ]
   }, {
     "metadata" : {
@@ -415,7 +429,7 @@
       "id" : "B21027AC7B654AD485163E0745C04BEF"
     },
     "cell_type" : "markdown",
-    "source" : "Formatting with interpolated strings with the prefix \"f\""
+    "source" : "Formatting with interpolated strings with the prefix `f`"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -529,7 +543,7 @@
       "id" : "EE862459D25B4D1F94E7E9A7A91B2C42"
     },
     "cell_type" : "markdown",
-    "source" : "Functions are defined like so:\n\n    def functionName(args...): ReturnType = { body... }\n\nIf you come from more traditional languages, notice the omission of the return keyword. In Scala, the last expression in the function block is the return value."
+    "source" : "Functions are defined like so:\n\n    def functionName(args...): ReturnType = { body... }\n\nIf you come from more traditional languages, notice the omission of the `return` keyword. In Scala, the last expression in the function block is the return value."
   }, {
     "metadata" : {
       "trusted" : true,
@@ -907,7 +921,7 @@
       "id" : "7F9A8BB3CE8F4E7A8D38B94A3F321666"
     },
     "cell_type" : "markdown",
-    "source" : "Note that while is a loop in the classical sense - it executes sequentially while changing the loop variable. while is very fast, but using the combinators and comprehensions above is easier to understand and parallelize"
+    "source" : "Note that `while` is a loop in the classical sense - it executes sequentially while changing the loop variable. `while` is very fast, but using the combinators and comprehensions above is easier to understand and parallelize"
   }, {
     "metadata" : {
       "id" : "ECE89D6640E347C2895235D00E30DC96"
@@ -1070,7 +1084,7 @@
       "id" : "7CA2A9BDCDE641168A2AE04FCC169B3F"
     },
     "cell_type" : "markdown",
-    "source" : "Look up the documentation of map [here](http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.Map) and make sure you can read it"
+    "source" : "Look up the documentation of `Map` [here](http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.Map) and make sure you can read it"
   }, {
     "metadata" : {
       "id" : "A62E1C2FF75D4EF2B4496BB65817C15E"
@@ -1184,7 +1198,7 @@
       "id" : "1E77CB0F13BD4DCAB1752C5F864C1F4C"
     },
     "cell_type" : "markdown",
-    "source" : "Alternatively you can do multiple-variable assignment to tuple, which is more convenient and readable in many cases"
+    "source" : "Alternatively you can do multiple-variable assignment to `tuple`, which is more convenient and readable in many cases"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -1217,7 +1231,7 @@
       "id" : "E964844706EC49FBB7A74E6C8DAC0552"
     },
     "cell_type" : "markdown",
-    "source" : "Aside: Everything we've done so far in this tutorial has been simple expressions (values, functions, etc). These expressions are fine to type into the command-line interpreter for quick tests, but they cannot exist by themselves in a Scala file. For example, you cannot have just \"val x = 5\" in a Scala file. Instead, the only top-level constructs allowed in Scala are:\n\n- objects\n- classes\n- case classes\n- traits\n\nAnd now we will explain what these are."
+    "source" : "Aside: Everything we've done so far in this tutorial has been simple expressions (values, functions, etc). These expressions are fine to type into the command-line interpreter for quick tests, but they cannot exist by themselves in a Scala file. For example, you cannot have just `val x = 5` in a Scala file. Instead, the only top-level constructs allowed in Scala are:\n\n- objects\n- classes\n- case classes\n- traits\n\nAnd now we will explain what these are."
   }, {
     "metadata" : {
       "id" : "02DEF9708CB841BD98002F6694F45A10"
@@ -1250,7 +1264,7 @@
       "id" : "F86E3D55ECF04DD58EE613B4ABFB105E"
     },
     "cell_type" : "markdown",
-    "source" : "The \"object\" keyword creates a type AND a singleton instance of it. It is common for Scala classes to have a \"companion object\", where the per-instance behavior is captured in the classes themselves, but behavior related to all instance of that class go in objects. The difference is similar to class methods vs static methods in other languages. Note that objects and classes can have the same name."
+    "source" : "The `object` keyword creates a type AND a singleton instance of it. It is common for Scala classes to have a \"companion object\", where the per-instance behavior is captured in the classes themselves, but behavior related to all instance of that class go in objects. The difference is similar to class methods vs static methods in other languages. Note that objects and classes can have the same name."
   }, {
     "metadata" : {
       "trusted" : true,
@@ -1304,7 +1318,7 @@
       "id" : "29D49752332A4E94AA86354FCEA55E81"
     },
     "cell_type" : "markdown",
-    "source" : "Create a new instance. Note cases classes don't need \"new\""
+    "source" : "Create a new instance. Note cases classes don't need `new`"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -1695,7 +1709,7 @@
       "id" : "4CCF2F6544FD4E109B0523A0D3F907AB"
     },
     "cell_type" : "markdown",
-    "source" : "Scala a foreach method defined on certain collections that takes a type returning Unit (a void method)"
+    "source" : "Scala a foreach method defined on certain collections that takes a type returning `Unit` (a void method)"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -1875,7 +1889,7 @@
       "id" : "201650657F10450580B1075299B3E366"
     },
     "cell_type" : "markdown",
-    "source" : "But if we `omit` the implicit parameter, an implicit value of the same type is used, in this case, `myImplicitInt`:"
+    "source" : "But if we omit the `implicit` parameter, an implicit value of the same type is used, in this case, `myImplicitInt`:"
   }, {
     "metadata" : {
       "trusted" : true,
@@ -2146,7 +2160,7 @@
     "metadata" : {
       "trusted" : true,
       "input_collapsed" : false,
-      "collapsed" : false,
+      "collapsed" : true,
       "id" : "75B1D16A1D134486AC8719DEEC7941F7"
     },
     "cell_type" : "code",
